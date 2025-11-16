@@ -97,6 +97,7 @@ services:
       - "8080:8080"
     environment:
       LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_CLOUD_GATEWAY: DEBUG
+      SPRING_CLOUD_COMPATIBILITY_VERIFIER_ENABLED: "false"
     depends_on:
       - auth-service
       - user-service
