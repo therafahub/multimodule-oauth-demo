@@ -26,7 +26,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-cloud.version>2024.0.0</spring-cloud.version>
         <spring-cloud-oauth2.version>2.2.4</spring-cloud-oauth2.version>
-        <spring-security-oauth2-jose.version>6.3.0</spring-security-oauth2-jose.version>
         <springdoc-openapi.version>2.6.0</springdoc-openapi.version>
         <micrometer.version>1.14.0</micrometer.version>
         <vavr.version>0.10.4</vavr.version>
@@ -55,12 +54,8 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- Spring Security OAuth2 -->
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-oauth2-jose</artifactId>
-                <version>${spring-security-oauth2-jose.version}</version>
-            </dependency>
+            <!-- Spring Security OAuth2 - Uses version from Spring Boot parent -->
+            <!-- No explicit version needed - Boot 3.5.0 manages Spring Security versions -->
 
             <!-- OpenAPI / Swagger -->
             <dependency>
