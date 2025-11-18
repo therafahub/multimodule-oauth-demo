@@ -69,23 +69,39 @@ public class AuthenticationService implements AuthenticationUseCase {
         log.info("Autenticando usuario: {}", username);
 
         var userOpt = userRepository.findByUsername(username);
-
+        
         if (userOpt.isEmpty()) {
+            log.error("❌ Usuario no encontrado: {}", username);
             return Either.left("Invalid credentials");
         }
 
         UserEntity user = userOpt.get();
+        log.debug("✅ Usuario encontrado: {}", user.getUsername());
 
         if (!user.isEnabled()) {
+            log.warn("❌ Usuario deshabilitado: {}", username);
             return Either.left("User account is disabled");
         }
 
-        if (!passwordEncoder.matches(password, user.getPassword())) {
+        log.debug("🔍 Comparando contraseñas - Entrada: {} caracteres, Hash en BD: {} caracteres", 
+            password.length(), user.getPassword().length());
+        
+        boolean passwordMatch = passwordEncoder.matches(password, user.getPassword());
+        log.debug("🔍 Resultado de comparación: {}", passwordMatch);
+        
+        if (!passwordMatch) {
+            log.warn("❌ Contraseña incorrecta para usuario: {}", username);
             return Either.left("Invalid credentials");
         }
 
-        log.info("Usuario autenticado: {}", username);
+        log.info("✅ Usuario autenticado: {}", username);
         return Either.right(user);
+    }
+
+    @Override
+    public Either<String, UserEntity> validateCredentials(String username, String password) {
+        log.info("Validando credenciales para usuario: {}", username);
+        return authenticate(username, password);
     }
 
     @Override

@@ -14,7 +14,7 @@ public class GatewayConfig {
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
-            // Auth Service
+            // Auth Service (API endpoints)
             .route("auth-service", r -> r
                 .path("/auth/**")
                 .uri("http://localhost:8081"))
@@ -24,10 +24,10 @@ public class GatewayConfig {
                 .path("/users/**")
                 .uri("http://localhost:8082"))
             
-            // Web UI
-            .route("web-ui", r -> r
-                .path("/ui/**", "/", "/index.html")
-                .uri("http://localhost:8080"))
+            // Web UI - solo para index y rutas específicas (raíz y recursos estáticos)
+            .route("web-ui-root", r -> r
+                .path("/")
+                .uri("http://localhost:8083"))
             
             .build();
     }

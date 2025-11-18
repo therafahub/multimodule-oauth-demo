@@ -64,7 +64,7 @@
             <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
             <div th:if="${success}" class="alert alert-success" role="alert" th:text="${success}"></div>
             
-            <form th:action="@{/ui/auth/register}" method="post" th:object="${registerRequest}">
+            <form th:action="@{/auth/register}" method="post" th:object="${registerRequest}">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
@@ -104,7 +104,7 @@
             </form>
             
             <div class="login-link">
-                ¿Ya tienes cuenta? <a href="/ui/auth/login">Inicia sesión aquí</a>
+                ¿Ya tienes cuenta? <a href="/auth/login">Inicia sesión aquí</a>
             </div>
         </div>
     </div>

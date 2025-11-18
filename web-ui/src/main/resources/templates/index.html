@@ -68,13 +68,13 @@
             <p>Plataforma Enterprise con Arquitectura Hexagonal</p>
             
             <div sec:authorize="isAnonymous()">
-                <a href="/ui/auth/login" class="btn btn-light me-3">Iniciar Sesión</a>
-                <a href="/ui/auth/register" class="btn btn-outline-light">Registrarse</a>
+                <a href="/auth/login" class="btn btn-light me-3">Iniciar Sesión</a>
+                <a href="/auth/register" class="btn btn-outline-light">Registrarse</a>
             </div>
             
             <div sec:authorize="isAuthenticated()">
                 <p class="mt-3 fs-5">Bienvenido, <span sec:authentication="name"></span>!</p>
-                <a href="/ui/dashboard" class="btn btn-light me-3">Dashboard</a>
+                <a href="/dashboard" class="btn btn-light me-3">Dashboard</a>
                 <a href="/logout" class="btn btn-outline-light">Cerrar Sesión</a>
             </div>
 

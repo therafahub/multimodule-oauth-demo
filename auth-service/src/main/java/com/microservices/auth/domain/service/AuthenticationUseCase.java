@@ -20,6 +20,11 @@ public interface AuthenticationUseCase {
     Either<String, UserEntity> authenticate(String username, String password);
 
     /**
+     * Valida las credenciales de un usuario (para Web-UI)
+     */
+    Either<String, UserEntity> validateCredentials(String username, String password);
+
+    /**
      * Busca un usuario por username
      */
     Either<String, UserEntity> getUserByUsername(String username);

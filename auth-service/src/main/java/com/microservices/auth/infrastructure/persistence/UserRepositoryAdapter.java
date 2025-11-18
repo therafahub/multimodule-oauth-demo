@@ -23,12 +23,14 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
     private final UserMapper userMapper;
 
     @Override
-    @Cacheable(value = "users", key = "#username")
+    //@Cacheable(value = "users", key = "#username")  // DISABLED FOR DEBUG
     public Option<UserEntity> findByUsername(String username) {
-        log.debug("Buscando usuario en BD: {}", username);
+        log.info("🔍 Buscando usuario en BD: {}", username);
+        log.debug("📝 Ejecutando jpaRepository.findByUsername('{}')", username);
+        var result = jpaRepository.findByUsername(username);
+        log.debug("📊 Resultado jpaRepository: {}", result);
         return Option.ofOptional(
-            jpaRepository.findByUsername(username)
-                .map(userMapper::toDomain)
+            result.map(userMapper::toDomain)
         );
     }
 

@@ -6,6 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 /**
  * Controlador para la interfaz de autenticación
@@ -19,9 +22,10 @@ public class AuthController {
     private final AuthService authService;
 
     @GetMapping("/login")
-    public String loginPage() {
+    public String loginPage(Model model) {
+        log.info("Mostrando página de login");
         return "auth/login";
-    }
+    }    
 
     @GetMapping("/register")
     public String registerPage(Model model) {
